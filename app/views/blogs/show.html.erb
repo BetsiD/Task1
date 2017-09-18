@@ -1,0 +1,46 @@
+
+	<div class="header">
+		<%= image_tag("header.png", :alt => "header") %>
+		<h1><i>My Blog</i></h1>
+	</div>
+	<div class="hr">
+		<div class="create">
+				<%= link_to 'Back', {:action => 'index'}, :id => 'show_back' %>
+		</div>
+	</div>
+	<div class="container">
+		<%= form_with(model: @comment, local: true) do |form| %>
+					<% if @comment.errors.any? %>
+						<div id="error_explanation">
+							<h2><%= pluralize(@comment.errors.count, "error") %> prohibited this blog from being saved:</h2>
+
+							<ul>
+								<% @comment.errors.full_messages.each do |message| %>
+								<li><%= message %></li>
+						<% end %>
+						 </ul>
+						</div>
+				<% end %>
+	<table border="0" class="show_table">
+		<tr>
+			<td id="heading" colspan="2"><%= image_tag("dp1.jpg", :alt => "dp") %>&nbsp;&nbsp;<%= @blog.title %>&nbsp;&nbsp;&nbsp;<span>Posted by <span id="author"><%= @blog.author %></span> on <%= @blog.created_at.strftime("%b %d,%Y") %></span>
+				<hr></td>
+		</tr>
+		<tr class='hr1'>
+			<td style="text-indent: 30px; text-align: justify; padding-bottom: 20px; vertical-align: top"><%= @blog.description %></td>
+			<td><%= image_tag("dp.jpg", :alt => "blog description image") %></td>
+		</tr>
+		<tr><td>Comments:</td></tr>
+		<% @comments.each do |comments| %>
+			<tr>
+				<td colspan="2"><br><%= image_tag("dp1.jpg", :alt => "dp", :id => 'comment_img') %>&nbsp;&nbsp;<%= comments.comment_text %></td>
+			</tr>
+		<% end %>
+		<tr>
+			<td colspan="2"><%= image_tag("dp1.jpg", :alt => "dp", :id => 'comment_img') %>&nbsp;&nbsp;<%= form.text_field :comment_text, id: :comment_comment_text, :placeholder => "Write your comment..." %>&nbsp;
+				<%= form.hidden_field :blog_no, id: :comment_blog_no ,value:@blog.id %><%= form.submit%></td>
+		</tr>
+	</table>
+<br>
+</div>
+<% end %>

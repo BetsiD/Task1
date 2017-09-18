@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body >
+	<div class="header">
+		<%= image_tag("header.png", :alt => "header") %>
+		<h1><i>My Blog</i></h1>
+	</div>
+	<div class="hr">
+		<div class="create">
+				<%= link_to 'Create new', {:action => 'new'} %>
+		</div>
+	</div>
+	<div class="container">
+		<div class="blog_list">
+			<% @blogs.each do |blogs| %>
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to blogs.title, blog_path(blogs)%></h3></td>
+					<td><%= link_to "Show", { :action => 'show', :id => blogs.id} %></td>
+					<td><%= link_to "Delete", { :action => 'destroy', :id => blogs.id}, :method => 'delete' %></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" class="content" style="text-indent: 30px; margin-top: 10px;"><%= (blogs.description).truncate(180) %></td>
+				</tr>
+				<tr>
+					<td colspan="4" id=read style="height: 40px">Author:<span><%= blogs.author%></span></td>
+				</tr>
+				</table>
+
+				<% end %>
+		</div>
+	</div>
+</body>
+</html>

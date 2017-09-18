@@ -1,0 +1,52 @@
+  <!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body >
+	<div class="header">
+		<%= image_tag("header.png", :alt => "header") %>
+		<h1><i>My Blog</i></h1>
+	</div>
+	<div class="hr">
+		
+	</div>
+	<div class="container">
+<%= form_with(model: @blog, local: true) do |form| %>
+  <% if @blog.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+
+      <ul>
+      <% @blog.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table border="0" align="center" class="new_table">
+	<tr>
+		<td colspan="2" align="center" style="color: #FEBF33; text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;"><h2><i>New Blog</i></h2></td>
+	</tr>
+	<tr>
+		<td><b><%= form.label :title %></b></td>
+		<td><%= form.text_field :title, id: :blog_name %></td>
+	</tr>
+	<tr>
+		<td><b><%= form.label :description %></b></td>
+		<td><%= form.text_area :description, id: :blog_description %></td>
+	</tr>
+	<tr>
+		<td><b><%= form.label :"author name" %></b></td>
+		<td><%= form.text_field :author, id: :blog_author %></td>
+	</tr>
+	<tr>
+		<td><b><%= form.label :"Image" %></b></td>
+		<td><%= image_tag("dp.jpg", :alt => "blog description image") %></td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align: center; padding-top: 30px"><%= form.submit :id => "create_new" %>&nbsp;&nbsp;&nbsp;<%= link_to 'Back' ,  blogs_path%></td>
+	</tr>
+</table>
+</div>
+<% end %>

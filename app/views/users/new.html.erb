@@ -24,6 +24,10 @@
 		<td><%= form.text_field :name, id: :user_name %><span id="alert" style="font-style: bold; font-size: 12px;color: #ff1a1a; text-align: center;"><%= @user.errors.messages[:name].first if @user.errors.messages.include?(:name) %></span></td>
 	</tr>
 	<tr>
+		<td><b><%= form.label :password %></b></td>
+		<td><%= form.text_field :password, id: :user_password %><span id="alert" style="font-style: bold; font-size: 12px;color: #ff1a1a; text-align: center;"><%= @user.errors.messages[:password].first if @user.errors.messages.include?(:password) %></span></td>
+	</tr>
+	<tr>
 		<td><b><%= form.label :contact %></b></td>
 		<td><%= form.text_field :contact, id: :user_contact %><span id="alert" style="font-style: bold; font-size: 12px;color: #ff1a1a; text-align: center;"><%= @user.errors.messages[:contact].first if @user.errors.messages.include?(:contact) %></span></td>
 	</tr>

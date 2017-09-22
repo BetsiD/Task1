@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20170921053638) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
+    t.string "email"
+    t.string "password"
     t.string "contact"
     t.text "address"
     t.datetime "created_at", null: false

@@ -9,6 +9,7 @@
 		</div>
 	</div>
 	<div class="container">
+		<p id="alert" style="font-style: bold; font-size: 14px;color: #ff1a1a; text-align: center;"><%= flash[:alert] %></p>
 		<%= form_with(model: @comment, local: true) do |form| %>
 					<% if @comment.errors.any? %>
 						<div id="error_explanation">
@@ -23,7 +24,7 @@
 				<% end %>
 	<table border="0" class="show_table">
 		<tr>
-			<td id="heading" colspan="2"><%= image_tag("dp1.jpg", :alt => "dp") %>&nbsp;&nbsp;<%= @blog.title %>&nbsp;&nbsp;&nbsp;<span>Posted by <span id="author"><%= @blog.author %></span> on <%= @blog.created_at.strftime("%b %d,%Y") %></span>
+			<td id="heading" colspan="2"><%= image_tag("dp1.jpg", :alt => "dp") %>&nbsp;&nbsp;<%= @blog.title %>&nbsp;&nbsp;&nbsp;<span>Posted by <span id="author"><%= @blog.user.name %></span> on <%= @blog.created_at.strftime("%b %d,%Y") %></span>
 				<hr></td>
 		</tr>
 		<tr class='hr1'>
@@ -38,7 +39,7 @@
 		<% end %>
 		<tr>
 			<td colspan="2"><%= image_tag("dp1.jpg", :alt => "dp", :id => 'comment_img') %>&nbsp;&nbsp;<%= form.text_field :comment_text, id: :comment_comment_text, :placeholder => "Write your comment..." %>&nbsp;
-				<%= form.hidden_field :blog_no, id: :comment_blog_no ,value:@blog.id %><%= form.submit%></td>
+				<%= form.hidden_field :blog_id, id: :comment_blog_id ,value:@blog.id %><%= form.submit%></td>
 		</tr>
 	</table>
 <br>

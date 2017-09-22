@@ -1,0 +1,43 @@
+  <!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body >
+	<div class="header">
+		<%= image_tag("header.png", :alt => "header") %>
+		<h1><i>My user</i></h1>
+	</div>
+	<div class="hr">
+		
+	</div>
+	<div class="container">
+<%= form_with(model: @user, local: true) do |form| %>
+ 
+<table border="0" align="center" class="new_table">
+	<p id="alert" style="font-style: bold; font-size: 14px;color: #ff1a1a; text-align: center;"><%= flash[:alert] %></p>
+	<tr>
+		<td colspan="2" align="center" style="color: #FEBF33; text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;"><h2><i>New User</i></h2></td>
+	</tr>
+	<tr>
+		<td><b><%= form.label :name %></b></td>
+		<td><%= form.text_field :name, id: :user_name %><span id="alert" style="font-style: bold; font-size: 12px;color: #ff1a1a; text-align: center;"><%= @user.errors.messages[:name].first if @user.errors.messages.include?(:name) %></span></td>
+	</tr>
+	<tr>
+		<td><b><%= form.label :contact %></b></td>
+		<td><%= form.text_field :contact, id: :user_contact %><span id="alert" style="font-style: bold; font-size: 12px;color: #ff1a1a; text-align: center;"><%= @user.errors.messages[:contact].first if @user.errors.messages.include?(:contact) %></span></td>
+	</tr>
+	<tr>
+		<td><b><%= form.label :address %></b></td>
+		<td><%= form.text_area :address, id: :user_address %><span id="alert" style="font-style: bold; font-size: 12px;color: #ff1a1a; text-align: center;"><%= @user.errors.messages[:address].first if @user.errors.messages.include?(:address) %></span></td>
+	</tr>
+	<tr>
+		<td><b><%= form.label :"Image" %></b></td>
+		<td><%= image_tag("dp1.jpg", :alt => "user profile image") %></td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align: center; padding-top: 30px"><%= form.submit :id => "create_new" %>&nbsp;&nbsp;&nbsp;<%= link_to 'Back', blogs_path %></td>
+	</tr>
+</table>
+</div>
+<% end %>

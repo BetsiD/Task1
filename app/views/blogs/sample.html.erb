@@ -1,0 +1,398 @@
+
+	<div class="header">
+		<%= image_tag("header.png", :alt => "header") %>
+		<h1><i>My Blog</i></h1>
+	</div>
+	<div class="hr">
+		<div class="create">
+				<%= link_to 'Create new', {:action => 'new'} %>
+		</div>
+	</div>
+	<div class="container">
+		<h2><u>find</u></h2>
+		<div class="blog_list">
+			
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to @blog1.title, blog_path(@blog1)%></h3></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" class="content" style="text-indent: 30px; margin-top: 10px;"><%= (@blog1.description).truncate(180) %></td>
+				</tr>
+				<tr>
+					<td colspan="4" id=read style="height: 40px">Author:<span><%= @blog1.author%></span></td>
+				</tr>
+				</table>
+		</div>
+		<h2><u>take => limit</u></h2>
+		<div class="blog_list">
+			<% @blog2.each do |blog2| %>
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to blog2.title, blog_path(blog2)%></h3></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" class="content" style="text-indent: 30px; margin-top: 10px;"><%= (blog2.description).truncate(180) %></td>
+				</tr>
+				<tr>
+					<td colspan="4" id=read style="height: 40px">Author:<span><%= blog2.author%></span></td>
+				</tr>
+				</table>
+		<% end %>
+		</div>
+
+		<h2><u>find => in</u></h2>
+		<div class="blog_list">
+			<% @blog3.each do |blog3| %>
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to blog3.title%></h3></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" class="content" style="text-indent: 30px; margin-top: 10px;"><%= (blog3.description).truncate(180) %></td>
+				</tr>
+				<tr>
+					<td colspan="4" id=read style="height: 40px">Author:<span><%= blog3.author%></span></td>
+				</tr>
+				</table>
+		<% end %>
+		</div>
+
+		<h2><u>first</u></h2>
+		<div class="blog_list">
+			
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to @blog4.title%></h3></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" class="content" style="text-indent: 30px; margin-top: 10px;"><%= (@blog4.description).truncate(180) %></td>
+				</tr>
+				<tr>
+					<td colspan="4" id=read style="height: 40px">Author:<span><%= @blog4.author%></span></td>
+				</tr>
+				</table>
+		</div>
+
+		<h2><u>last</u></h2>
+		<div class="blog_list">
+			
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to @blog5.title%></h3></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" class="content" style="text-indent: 30px; margin-top: 10px;"><%= (@blog5.description).truncate(180) %></td>
+				</tr>
+				<tr>
+					<td colspan="4" id=read style="height: 40px">Author:<span><%= @blog5.author%></span></td>
+				</tr>
+				</table>
+		</div>
+
+		<h2><u>order by title</u></h2>
+		<div class="blog_list">
+			<% @blog6.each do |blog6| %>
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to blog6.title%></h3></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" class="content" style="text-indent: 30px; margin-top: 10px;"><%= (blog6.description).truncate(180) %></td>
+				</tr>
+				<tr>
+					<td colspan="4" id=read style="height: 40px">Author:<span><%= blog6.author%></span></td>
+				</tr>
+				</table>
+		<% end %>
+		</div>
+
+		<h2><u>order by title in desc</u></h2>
+		<div class="blog_list">
+			<% @blog7.each do |blog7| %>
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to blog7.title%></h3></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" class="content" style="text-indent: 30px; margin-top: 10px;"><%= (blog7.description).truncate(180) %></td>
+				</tr>
+				<tr>
+					<td colspan="4" id=read style="height: 40px">Author:<span><%= blog7.author%></span></td>
+				</tr>
+				</table>
+		<% end %>
+		</div>
+
+		<h2><u>find_by</u></h2>
+		<div class="blog_list">
+			<% if(@blog8.blank?) %>
+			<p> No content </p>
+			<% else %>
+			
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to @blog8.title%></h3></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" class="content" style="text-indent: 30px; margin-top: 10px;"><%= (@blog8.description).truncate(180) %></td>
+				</tr>
+				<tr>
+					<td colspan="4" id=read style="height: 40px">Author:<span><%= @blog8.author%></span></td>
+				</tr>
+				</table>
+				<% end %>
+		</div>
+
+		<h2><u>where</u></h2>
+		<div class="blog_list">
+			<% @blog9.each do |blog9| %>
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to blog9.title%></h3></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" class="content" style="text-indent: 30px; margin-top: 10px;"><%= (blog9.description).truncate(180) %></td>
+				</tr>
+				<tr>
+					<td colspan="4" id=read style="height: 40px">Author:<span><%= blog9.author%></span></td>
+				</tr>
+				</table>
+		<% end %>
+		</div>
+
+		<h2><u>where2</u></h2>
+		<div class="blog_list">
+			<% @blog10.each do |blog10| %>
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to blog10.title%></h3></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" class="content" style="text-indent: 30px; margin-top: 10px;"><%= (blog10.description).truncate(180) %></td>
+				</tr>
+				<tr>
+					<td colspan="4" id=read style="height: 40px">Author:<span><%= blog10.author%></span></td>
+				</tr>
+				</table>
+		<% end %>
+		</div>
+
+		<h2><u>where3</u></h2>
+		<div class="blog_list">
+			<% @blog11.each do |blog11| %>
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to blog11.title%></h3></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" class="content" style="text-indent: 30px; margin-top: 10px;"><%= (blog11.description).truncate(180) %></td>
+				</tr>
+				<tr>
+					<td colspan="4" id=read style="height: 40px">Author:<span><%= blog11.author%></span></td>
+				</tr>
+				</table>
+		<% end %>
+
+		<h2><u>where_with and</u></h2>
+		<div class="blog_list">
+			<% @blog12.each do |blog12| %>
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to blog12.title%></h3></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" class="content" style="text-indent: 30px; margin-top: 10px;"><%= (blog12.description).truncate(180) %></td>
+				</tr>
+				<tr>
+					<td colspan="4" id=read style="height: 40px">Author:<span><%= blog12.author%></span></td>
+				</tr>
+				</table>
+		<% end %>
+
+		<h2><u>where_with or</u></h2>
+		<div class="blog_list">
+			<% @blog13.each do |blog13| %>
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to blog13.title%></h3></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" class="content" style="text-indent: 30px; margin-top: 10px;"><%= (blog13.description).truncate(180) %></td>
+				</tr>
+				<tr>
+					<td colspan="4" id=read style="height: 40px">Author:<span><%= blog13.author%></span></td>
+				</tr>
+				</table>
+		<% end %>
+		</div>
+
+		<h2><u>select</u></h2>
+		<div class="blog_list">
+			<% @blog14.each do |blog| %>
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to blog.title%></h3></td>
+				</tr>
+				
+				</table>
+		<% end %>
+		</div>
+
+		<h2><u>select with where</u></h2>
+		<div class="blog_list">
+			<% @blog15.each do |blog| %>
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to blog.title%></h3></td>
+				</tr>
+				
+				</table>
+		<% end %>
+		</div>
+
+		<h2><u>select with only</u></h2>
+		<div class="blog_list">
+			<% @blog16.each do |blog| %>
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to blog.title%></h3></td>
+				</tr>
+				
+				</table>
+		<% end %>
+		</div>
+
+		<h2><u>select with reverse_order</u></h2>
+		<div class="blog_list">
+			<% @blog17.each do |blog| %>
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to blog.title%></h3></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" class="content" style="text-indent: 30px; margin-top: 10px;"><%= (blog.description).truncate(180) %></td>
+				</tr>
+				<tr>
+					<td colspan="4" id=read style="height: 40px">Author:<span><%= blog.author%></span></td>
+				</tr>
+				</table>
+		<% end %>
+		</div>
+
+		<h2><u>join</u></h2>
+		<div class="blog_list">
+			<% @blog17.each do |blog| %>
+				<table border="0">
+				<tr class="seperator">
+					<td>
+						<div class="dp">
+							<%= image_tag("dp1.jpg", :alt => "dp") %>
+						</div>
+					</td>
+					<td class="content" id="title"><h3><%= link_to blog.title%></h3></td>
+					<td class="content" id="title"><h3><%= link_to blog.comment_text%></h3></td>
+				</tr>
+				</table>
+		<% end %>
+		</div>
+	</div>

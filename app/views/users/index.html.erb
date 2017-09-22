@@ -4,29 +4,28 @@
 	</script>
 </head>
 	<div class="header">
-		<p id="notice"><%= notice %></p>
 		<%= image_tag("header.png", :alt => "header") %>
 		<h1><i>My Blog</i></h1>
 	</div>
 	<div class="hr">
 		<div class="create">
-				<%= link_to 'New blog', {:action => 'new'} %>
+				<%= link_to 'New blog', {:controller => 'blogs',:action => 'new'} %>
 		</div>
 		<div class="create">
 				<%= link_to 'New user', {:controller => 'users', :action => 'new'} %>
 		</div>
 		<div class="create">
 			<%= form_with(model: @user,:url => users_path,method: :get, local: true) do |form| %>
-				<%= select_tag "user", options_from_collection_for_select(@user,:id,:name), {:prompt => "All"} %><%= form.submit "go", :id => 'change'%>
+				<%= select_tag "user", options_from_collection_for_select(@userAll,:id,:name), {:prompt => "All"} %><%= form.submit "go", :id => 'change'%>
 			<% end %>
 		</div>
 	</div>
 	<div class="container">
-		<% if @blogs.blank? %>
+		<% if @blog.blank? %>
 			<p style="font-size: 20px;"><br>No blogs<br><br><br><br><br><br><br><br><br><br><br><br></p>
 		<% else %>
 		<div class="blog_list">
-			<% @blogs.each do |blog| %>
+			<% @blog.each do |blog| %>
 				<table border="0">
 				<tr class="seperator">
 					<td>
@@ -35,7 +34,7 @@
 						</div>
 					</td>
 					<td class="content" id="title"><h3><%= link_to blog.title, blog_path(blog)%></h3></td>
-					<td><%= link_to "Show", { :action => 'show', :id => blog.id} %></td>
+					<td><%= link_to "Show", blog_path(blog) %></td>
 					<td><%= link_to "Delete", { :action => 'destroy', :id => blog.id}, :method => 'delete', data: { confirm: "Are you sure?" } %></td>
 				</tr>
 				<tr>
@@ -50,6 +49,3 @@
 				<% end %>
 		</div>
 	</div>
-<script type="text/javascript">
-	
-</script>

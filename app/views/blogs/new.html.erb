@@ -1,9 +1,4 @@
-  <!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body >
+
 	<div class="header">
 		<%= image_tag("header.png", :alt => "header") %>
 		<h1><i>My Blog</i></h1>
@@ -15,11 +10,9 @@
 <%= form_with(model: @blog, local: true) do |form| %>
   <% if @blog.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
-
       <ul>
       <% @blog.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        
       <% end %>
       </ul>
     </div>
@@ -30,15 +23,15 @@
 	</tr>
 	<tr>
 		<td><b><%= form.label :title %></b></td>
-		<td><%= form.text_field :title, id: :blog_name %></td>
+		<td><%= form.text_field :title, id: :blog_name %><span id="alert" style="font-style: bold; font-size: 12px;color: #ff1a1a; text-align: center;"><%= @blog.errors.messages[:title].first if @blog.errors.messages.include?(:title) %></span></td>
 	</tr>
 	<tr>
 		<td><b><%= form.label :description %></b></td>
-		<td><%= form.text_area :description, id: :blog_description %></td>
+		<td><%= form.text_area :description, id: :blog_description %><span id="alert" style="font-style: bold; font-size: 12px;color: #ff1a1a; text-align: center;"><%= @blog.errors.messages[:description].first if @blog.errors.messages.include?(:description) %></span></td>
 	</tr>
 	<tr>
-		<td><b><%= form.label :"author name" %></b></td>
-		<td><%= form.text_field :author, id: :blog_author %></td>
+		<td><b><%= form.label :"user name" %></b></td>
+		<td><%= collection_select(:blog, :user_id, @users, :id, :name, prompt: true) %><span id="alert" style="font-style: bold; font-size: 12px;color: #ff1a1a; text-align: center;"><%= @blog.errors.messages[:user_id].first if @blog.errors.messages.include?(:user_id) %></span></td>
 	</tr>
 	<tr>
 		<td><b><%= form.label :"Image" %></b></td>
@@ -50,3 +43,5 @@
 </table>
 </div>
 <% end %>
+<script type="text/javascript">
+</script>

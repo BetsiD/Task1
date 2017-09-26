@@ -1,16 +1,11 @@
 class User < ApplicationRecord
 	has_many :blogs
-
-	validates :name, presence: {message: "Please enter your name"},format: { with: /\A[ a-z.A-Z]+\z/,
-    message: "Please enter a valid name" }
-    validates :email, presence: {message: "Please enter your eamilId"}
-    validates :password, presence: {message: "Please enter your password"}
-	validates :contact, presence: {message: "Please enter your contact details"},numericality: { only_integer: true },length: { is: 10 }
-	validates :address, presence: {message: "Please enter your address"}
-
-	before_validation :caps_name
-	private
-    def caps_name
-      self.name = name.capitalize
-    end
+	has_many :comments
+	validates :email, presence: {message: "Please fill the title"}
+	validates :comment_text, presence: true, length: { minimum: 8,
+    too_short: "Enter 8 characters" }
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 end

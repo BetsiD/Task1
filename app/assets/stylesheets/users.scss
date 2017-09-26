@@ -1,3 +1,24 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.field_address textarea{
+	width: 240px;
+}
+.new_session input[type="submit"]{
+	background-color: #000000;
+ 	border: none;
+   	color: #FEBF33;
+    padding: 10px 20px;
+   	text-align: center;
+  	text-decoration: none;
+    		
+}
+.new_registration input[type="submit"]{
+	background-color: #000000;
+    border: none;
+    color: #FEBF33;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+}		

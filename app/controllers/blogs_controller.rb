@@ -1,27 +1,41 @@
 class BlogsController < ApplicationController
-
+	#before_action :authenticate_user!
+	#protect_from_forgery
+  #before_filter :current_user
+  	
 	def index
-		@blogs = Blog.all
+		
 		@user = User.all
+		if params[:user] == "" || params[:user].nil?
+			@blogs = Blog.all
+		else
+			@user_id = User.find(params[:user])
+			@blogs = @user_id.blogs
+		end
 	end
 
 	def show
-		 @blog = Blog.find(params[:id])
+		@blog = Blog.find(params[:id])
 		 @comment = Comment.new
 		 @comments = @blog.comments
 		 @user = User.find_by_id(@blog)
+		if current_user.nil?
+		 @user_id = 0;
+		else
+		 @user_id = current_user.id
+		end
 	end
 
 	def new
 		 @blog = Blog.new
-		 @users = User.all
 	end
 
 	def create
 		@blog = Blog.new(blog_params)
 		respond_to do |format|
 			if @blog.save
-				format.html { redirect_to blogs_path, :flash => { :alert => "successfully" }}
+				format.html { redirect_to blogs_path }
+				#format.html { redirect_to blogs_path, :flash => { :alert => "successfully" }}
 			else
 				@users = User.all
 				format.html { render 'new' }

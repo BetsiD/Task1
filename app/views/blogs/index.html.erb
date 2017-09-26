@@ -4,23 +4,30 @@
 	</script>
 </head>
 	<div class="header">
-		<p id="notice"><%= notice %></p>
+		
 		<%= image_tag("header.png", :alt => "header") %>
 		<h1><i>My Blog</i></h1>
 	</div>
 	<div class="hr">
+		<% if !current_user.nil? %>
+			<div class="create">
+				<%= link_to "logout", destroy_user_session_path, method: :delete %>
+			</div>
+		<% end %>
 		<div class="create">
-				<%= link_to 'New blog', {:action => 'new'} %>
+				<% if current_user.nil? %>
+					<%= link_to 'LogIn', new_user_session_path %>
+				<% else %>
+					<%= link_to 'Write Blog', {:action => 'new'} %>
+				<% end %>
 		</div>
 		<div class="create">
-				<%= link_to 'New user', {:controller => 'users', :action => 'new'} %>
-		</div>
-		<div class="create">
-			<%= form_with(model: @user,:url => users_path,method: :get, local: true) do |form| %>
+			<%= form_with(model: @user,:url => blogs_path,method: :get, local: true) do |form| %>
 				<%= select_tag "user", options_from_collection_for_select(@user,:id,:name), {:prompt => "All"} %><%= form.submit "go", :id => 'change'%>
-			<% end %>
-		</div>
+			
+		</div><% end %>
 	</div>
+	
 	<div class="container">
 		<% if @blogs.blank? %>
 			<p style="font-size: 20px;"><br>No blogs<br><br><br><br><br><br><br><br><br><br><br><br></p>

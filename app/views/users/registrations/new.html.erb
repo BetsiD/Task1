@@ -1,0 +1,60 @@
+<div class="header">
+    <%= image_tag("header.png", :alt => "header") %>
+    <h1><i>My Blog</i></h1>
+  </div>
+  <div class="hr">
+    <div class="create">
+        <%= link_to "Log in", new_session_path(resource_name) %><br />
+    </div>
+    <div class="create">
+        <%= link_to "Blogs", blogs_path %><br />
+    </div>
+  </div>
+  <div class="container">
+  <table align="center" border="0" class="new_registration">
+    <tr>
+      <td>
+<span align="center" style="color: #FEBF33; text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;"><h2><i>SignUp</i></h2></span>
+<%= form_with(model: @user, local: true,url: user_registration_path(:user), method: :post) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :contact %><br />
+    <%= f.text_field :contact %>
+  </div>
+
+  <div class="field_address">
+    <%= f.label :address %><br />
+    <%= f.text_area :address, autofocus: true %>
+  </div>
+<br>
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+</td>
+</tr>
+</table>
+</div>
